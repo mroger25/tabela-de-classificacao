@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Imersão Dev - Aula 06</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <h1>Tabela de classificação</h1>
+    <div class="inputPlayer">
+      <form>
+        <label for="nomePlayer">Nome do Jogador</label>
+        <input type="text" name="nomePlayer" id="nomePlayer" /><br />
+        <label for="vitorias">Qnt Vitórias</label>
+        <input type="number" name="vitorias" id="vitorias" /><br />
+        <label for="empates">Qnt Empates</label>
+        <input type="number" name="empates" id="empates" /><br />
+        <label for="derrotas">Qnt Derrotas</label>
+        <input type="number" name="derrotas" id="derrotas" /><br />
+        <input type="button" value="Adicionar Jogador" id="adicionarJogador" />
+        <input type="reset" value="Limpar" />
+      </form>
+    </div>
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Vitórias</th>
+          <th>Empates</th>
+          <th>Derrotas</th>
+          <th>Pontos</th>
+          <th colspan="4">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaJogadores"></tbody>
+    </table>
+    <script src="main.js"></script>
+  </body>
+</html>
