@@ -1,2 +1,2 @@
-# tabela de classificacao
- Aula 6 da Imersão Dev da Alura
+# super trunfo
+ Aula 7 da Imersão Dev da Alura
