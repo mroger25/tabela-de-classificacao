@@ -1,3 +1,4 @@
+// ----------VARIÁVEIS GLOBAIS---------- //
 // elementos
 const tabela = document.getElementById("tabelaJogadores");
 const nomePlayer = document.getElementById("nomePlayer");
@@ -8,7 +9,9 @@ const btnAdicionarJogador = document.getElementById("adicionarJogador");
 
 // lista de jogadores
 const players = [];
+// ------------------------------------- //
 
+// ----------FUNÇÕES---------- //
 function adicionarLinhaNaTabela(i) {
   const jogador = players[i];
 
@@ -51,9 +54,9 @@ function exibirNaTabela() {
 
 function Player() {
   this.nomePlayer = nomePlayer.value === "" ? "Jogador" : nomePlayer.value;
-  this.vitorias = vitorias.value === "" ? 0 : Number(vitorias.value);
-  this.empates = empates.value === "" ? 0 : Number(empates.value);
-  this.derrotas = derrotas.value === "" ? 0 : Number(derrotas.value);
+  this.vitorias = vitorias.value === "" ? 0 : parseInt(vitorias.value);
+  this.empates = empates.value === "" ? 0 : parseInt(empates.value);
+  this.derrotas = derrotas.value === "" ? 0 : parseInt(derrotas.value);
   this.pontos = this.vitorias * 3 + this.empates;
 }
 
@@ -135,6 +138,7 @@ function checkKeys(e) {
     adicionarJogador();
   }
 }
+// --------------------------- //
 
 nomePlayer.addEventListener("keydown", checkKeys);
 vitorias.addEventListener("keydown", checkKeys);
