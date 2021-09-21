@@ -19,11 +19,18 @@ function adicionarLinhaNaTabela(i) {
   elemento += "<td>" + jogador.derrotas + "</td>";
   elemento += "<td>" + jogador.pontos + "</td>";
   elemento +=
-    "<td><button onClick='adicionarVitoria(" + i + ")'>Vitória</button></td>";
+    "<td><button onClick='adicionarVitoria(" + i + ", 1)'>+V</button></td>";
   elemento +=
-    "<td><button onClick='adicionarEmpate(" + i + ")'>Empate</button></td>";
+    "<td><button onClick='adicionarVitoria(" + i + ", -1)'>-V</button></td>";
   elemento +=
-    "<td><button onClick='adicionarDerrota(" + i + ")'>Derrota</button></td>";
+    "<td><button onClick='adicionarEmpate(" + i + ", 1)'>+E</button></td>";
+  elemento +=
+    "<td><button onClick='adicionarEmpate(" + i + ", -1)'>-E</button></td>";
+  elemento +=
+    "<td><button onClick='adicionarDerrota(" + i + ", 1)'>+D</button></td>";
+  elemento +=
+    "<td><button onClick='adicionarDerrota(" + i + ", -1)'>-D</button></td>";
+  elemento += "<td><button onClick='zerarLinha(" + i + ")'>Zerar</button></td>";
   elemento +=
     "<td><button onClick='removerJogador(" +
     i +
@@ -58,25 +65,39 @@ function adicionarJogador() {
   exibirNaTabela();
 }
 
-function adicionarVitoria(i) {
+function contarPontos(vitorias, empates) {
+  return 3 * vitorias + empates;
+}
+
+function adicionarVitoria(i, qnt) {
   const jogador = players[i];
-  jogador.vitorias += 1;
-  jogador.pontos += 3;
+  jogador.vitorias = Math.max(0, jogador.vitorias + qnt);
+  jogador.pontos = contarPontos(jogador.vitorias, jogador.empates);
 
   exibirNaTabela();
 }
 
-function adicionarEmpate(i) {
+function adicionarEmpate(i, qnt) {
   const jogador = players[i];
-  jogador.empates += 1;
-  jogador.pontos += 1;
+  jogador.empates = Math.max(0, jogador.empates + qnt);
+  jogador.pontos = contarPontos(jogador.vitorias, jogador.empates);
 
   exibirNaTabela();
 }
 
-function adicionarDerrota(i) {
+function adicionarDerrota(i, qnt) {
   const jogador = players[i];
-  jogador.derrotas += 1;
+  jogador.derrotas = Math.max(0, jogador.derrotas + qnt);
+
+  exibirNaTabela();
+}
+
+function zerarLinha(i) {
+  const jogador = players[i];
+  jogador.vitorias = 0;
+  jogador.empates = 0;
+  jogador.derrotas = 0;
+  jogador.pontos = 0;
 
   exibirNaTabela();
 }
@@ -87,4 +108,36 @@ function removerJogador(i) {
   exibirNaTabela();
 }
 
+function zerarPontos() {
+  const totalPlayers = players.length;
+  if (totalPlayers > 0) {
+    for (let i = 0; i < totalPlayers; i++) {
+      const jogador = players[i];
+      jogador.vitorias = 0;
+      jogador.empates = 0;
+      jogador.derrotas = 0;
+      jogador.pontos = 0;
+    }
+
+    exibirNaTabela();
+  }
+}
+
+function apagarTabela() {
+  const totalPlayers = players.length;
+  players.splice(0, totalPlayers);
+
+  exibirNaTabela();
+}
+
+function checkKeys(e) {
+  if (e.key === "Enter") {
+    adicionarJogador();
+  }
+}
+
+nomePlayer.addEventListener("keydown", checkKeys);
+vitorias.addEventListener("keydown", checkKeys);
+empates.addEventListener("keydown", checkKeys);
+derrotas.addEventListener("keydown", checkKeys);
 btnAdicionarJogador.addEventListener("click", adicionarJogador);

@@ -8,13 +8,13 @@
     <h1>Tabela de classificação</h1>
     <div class="inputPlayer">
       <form>
-        <label for="nomePlayer">Nome do Jogador</label>
+        <label for="nomePlayer">Nome</label>
         <input type="text" name="nomePlayer" id="nomePlayer" /><br />
-        <label for="vitorias">Qnt Vitórias</label>
+        <label for="vitorias">Vit.</label>
         <input type="number" name="vitorias" id="vitorias" /><br />
-        <label for="empates">Qnt Empates</label>
+        <label for="empates">Emp.</label>
         <input type="number" name="empates" id="empates" /><br />
-        <label for="derrotas">Qnt Derrotas</label>
+        <label for="derrotas">Der.</label>
         <input type="number" name="derrotas" id="derrotas" /><br />
         <input type="button" value="Adicionar Jogador" id="adicionarJogador" />
         <input type="reset" value="Limpar" />
@@ -28,11 +28,13 @@
           <th>Empates</th>
           <th>Derrotas</th>
           <th>Pontos</th>
-          <th colspan="4">Ações</th>
+          <th colspan="8">Ações</th>
         </tr>
       </thead>
       <tbody id="tabelaJogadores"></tbody>
     </table>
+    <button onclick="zerarPontos()">Zerar Pontos</button>
+    <button onclick="apagarTabela()">Apagar Tabela</button>
     <script src="main.js"></script>
   </body>
 </html>
